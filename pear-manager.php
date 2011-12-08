@@ -204,7 +204,7 @@ class GearmanPearManager extends GearmanManager {
          */
         foreach($this->functions as $name => $func){
             $class = NET_GEARMAN_JOB_CLASS_PREFIX.$name;
-            include $func['path'];
+            include_once $func['path'];
             if(!class_exists($class) && !method_exists($class, "run")) {
                 $this->log("Class $class not found in {$func['path']} or run method not present");
                 posix_kill($this->pid, SIGUSR2);
